@@ -4,7 +4,6 @@ First you should install the requirements:
 ```sh
 $ pip install -r requirements.txt
 ```
-### Then clone the project
 ### In AparatDownloader folder make a python file put this code in that file :
 ```py
 from main import Main
