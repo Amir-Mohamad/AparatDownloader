@@ -1,5 +1,5 @@
 # The Main Script
-from AparatDownloader.app import Scraper
+from app import Scraper
 import requests
 
 
@@ -12,7 +12,7 @@ class Main:
 
 	def downloadVideo(self):
         # get video url
-		videoUrl = str(self.scraper.get_link())
+		videoUrl = str(self.scraper.get_video_link())
 		videoName = videoUrl.split('/')
 		with open(videoName[4], 'wb') as f:
 
@@ -29,6 +29,5 @@ class Main:
 					downloadVideo += len(data)
 					f.write(data)
 					done = int(50*downloadVideo / totalLength)
-					print("\r[%s%s]" % ('=' * done, ' ' * (50-done)), end=''
-
-		print('\nVideo downloaded !!!\n Enjoy :)')
+					print("\r[%s%s]" % ('=' * done, ' ' * (50-done)), end='')
+		print('\nVideo downloaded...')

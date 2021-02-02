@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-from AparatDownloader.exceptions import QualityError
+from exceptions import QualityError
 
 qualities = {
 	'144': 0,
@@ -23,7 +23,7 @@ class Scraper:
         page = requests.get(self.url)
         content = BeautifulSoup(page.text, 'html.parser')
         videoLinks = content.findAll('a', href=re.compile('.mp4'))
-        links = [links['href'] for link in videoLinks]
+        links = [link['href'] for link in videoLinks]
         return links
 
     def get_video_link(self):
@@ -32,20 +32,20 @@ class Scraper:
         """
         links = self.all_links()
         all_qualities = self.get_video_qualities()
-        if self.quality not in availble_video_qualities:
-			raise QualityError(f'This quality is not avalable \n available qualities are {availble_video_qualities}')
-		else:
-			link = links[qualities[self.quality]]
-			return link
+        if self.quality not in all_qualities:
+            raise QualityError(f'This quality is not avalable \n available qualities are {availble_video_qualities}')
+        else:
+            link = links[qualities[self.quality]]
+            return link
     
     def get_video_qualities(self):
         """
             this funciton will get the given video qualities
         """
         links = self.all_links()
-		qualities = list(qualities.keys())
+        qualitiesV = list(qualities.keys())
         availble_video_qualities = []
-		for i in range(len(links)):
-			availble_video_qualities.append(qualities[i])
-		return availble_video_qualities
+        for i in range(len(links)):
+            availble_video_qualities.append(qualitiesV[i])
+        return availble_video_qualities
 
