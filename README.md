@@ -11,6 +11,6 @@ from main import Main
 a = Main(url='https://www.aparat.com/v/oAM7j?playlist=731260', quality='240')
 a.downloadVideo()
 ```
-Wait for few minutes and your download will start
+Wait for few seconds and your download will start
 
 Enjoy :)
